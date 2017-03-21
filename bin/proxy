@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require_relative '../config/boot'
+
+# TODO: EVM server
+# require 'rake'
+# Rake.load_rakefile(File.expand_path('../../Rakefile', __FILE__))
+# Rake::Task['evm:start'].invoke
+
+# Reverse proxy
+require 'rack'
+require 'rack/reverse_proxy'
+app = Rack::Builder.new do
+  use Rack::ReverseProxy do
+    {
+      '/'    => 3000,
+      '/api' => 4000,
+      '/ws'  => 5000
+    }.each { |url, port| reverse_proxy(url, "http://localhost:#{port}") }
+  end
+  run proc { |_| }
+end
+
+Rack::Handler.default.run(app)

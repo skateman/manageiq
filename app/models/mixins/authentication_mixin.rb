@@ -333,7 +333,7 @@ module AuthenticationMixin
         end
       end
 
-    details &&= details.to_s.truncate(200)
+    details &&= details.to_s
 
     _log.warn("#{header} Validation failed: #{status}, #{details}") unless status == :valid
     return status, details

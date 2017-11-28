@@ -138,7 +138,7 @@ group :scvmm, :manageiq_default do
 end
 
 group :vmware, :manageiq_default do
-  manageiq_plugin "manageiq-providers-vmware"
+  gem 'manageiq-providers-vmware', :git => "https://github.com/skateman/manageiq-providers-vmware", :branch => "satoe-master"
   gem "vmware_web_service",             "~>0.2.0"
 end
 
@@ -183,7 +183,7 @@ group :consumption, :manageiq_default do
 end
 
 group :ui_dependencies do # Added to Bundler.require in config/application.rb
-  manageiq_plugin "manageiq-ui-classic"
+  gem 'manageiq-ui-classic', :git => "https://github.com/skateman/manageiq-ui-classic", :branch => "satoe-master"
   # Modified gems (forked on Github)
   gem "jquery-rjs",                   "=0.1.1",                       :git => "https://github.com/ManageIQ/jquery-rjs.git", :tag => "v0.1.1-1"
 end

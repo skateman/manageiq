@@ -18,6 +18,8 @@ Vmdb::Application.configure do
   config.public_file_server.enabled = true
   config.static_cache_control = "public, max-age=3600"
 
+  config.assets.compile = ENV['TEST_SUITE'] == 'spec:javascript'
+
   # Avoid potential warnings and race conditions
   config.assets.configure do |env|
     env.cache = ActiveSupport::Cache.lookup_store(:memory_store)

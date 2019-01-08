@@ -18,7 +18,8 @@ def manageiq_plugin(plugin_name)
 end
 
 manageiq_plugin "manageiq-providers-ansible_tower" # can't move this down yet, because we can't autoload ManageIQ::Providers::AnsibleTower::Shared
-manageiq_plugin "manageiq-schema"
+# manageiq_plugin "manageiq-schema"
+gem 'manageiq-schema', :git => "https://github.com/skateman/manageiq-schema", :branch => 'websocket-to-remote-console'
 
 # Unmodified gems
 gem "activerecord-id_regions",        "~>0.2.0"
@@ -190,7 +191,8 @@ group :consumption, :manageiq_default do
 end
 
 group :ui_dependencies do # Added to Bundler.require in config/application.rb
-  manageiq_plugin "manageiq-ui-classic"
+  # manageiq_plugin "manageiq-ui-classic"
+  gem 'manageiq-ui-classic', :git => "https://github.com/skateman/manageiq-ui-classic", :branch => 'websocket-to-remote-console'
   # Modified gems (forked on Github)
   gem "jquery-rjs",                   "=0.1.1",                       :git => "https://github.com/ManageIQ/jquery-rjs.git", :tag => "v0.1.1-1"
 end
